@@ -1,9 +1,9 @@
 <dataset>
     <story id="1" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Foo" version="0"/>
+    <story id="2" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Bar" version="0"/>
     <sprint id="1" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Bar" version="0"/>
     <sprint_stories stories="1" sprint="1"/>
-    <groups id="1" creation_time="2012-10-21 11:13:28" description="lorem ipsum" modification_time="2012-10-21 11:13:28" version="0"/>
-    <groups id="2" creation_time="2012-10-21 11:13:28" description="lorem ipsum2" modification_time="2012-10-21 11:13:28" version="0"/>
+    <groups id="1" creation_time="2012-10-21 11:13:28" description="lorem ipsum" modification_time="2012-10-21 11:13:28" version="0"/>    
     <groups_stories stories="1" groups="1"/>
 </dataset>
 

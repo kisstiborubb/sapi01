@@ -19,7 +19,7 @@
             <c:otherwise>
                 <c:forEach items="${ sprints}" var="sprint">
                     <div class="well well-small">
-                        <a href="/almafa/${sprint.id}"><c:out value="${sprint.title}"/></a>
+                        <a href="/sprint/update/${sprint.id}"><c:out value="${sprint.title}"/></a>
                     </div>
                 </c:forEach>
             </c:otherwise>
