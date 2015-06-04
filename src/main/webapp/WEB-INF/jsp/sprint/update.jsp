@@ -9,9 +9,10 @@
     <script type="text/javascript" src="/static/js/story.form.js"></script>
 </head>
 <body>
-    <h1><spring:message code="label.sprint.add.page.title"/></h1>
+    <h1><spring:message code="label.sprint.update.page.title"/></h1>
     <div class="well page-content">
-        <form:form action="/sprint/add" commandName="sprint" method="POST" enctype="utf8">
+        <form:form action="/sprint/update" commandName="sprint" method="POST" enctype="utf8">
+            <form:hidden path="id"/>
             <div id="control-group-title" class="control-group">
                 <label for="story-title"><spring:message code="label.story.title"/>:</label>
 
@@ -26,22 +27,22 @@
                 <div class="controls">
                     <form:textarea id="story-description" path="description"/>
                     <form:errors id="error-description" path="description" cssClass="help-inline"/>
-                </div>
+                </div>   
             </div>
-           <div id="control-group-stories" class="control-group">
+             <div id="control-group-stories" class="control-group">
                 <label for="stories"><spring:message code="Stories"/>:</label>
-                                
-                <c:forEach var="story" items="${stories}">
+                
+                 <c:forEach var="story" items="${stories}">
                 	<div class="checkbox">
                 		<form:checkbox path="stories" value="${story.description}" label="${story.title}" />
                 		<form:errors path="stories" cssClass="error" />
                 	</div>                	               
-                </c:forEach>   
-            </div> 
+                </c:forEach>
+            </div>
             <div class="action-buttons">
                 <a href="/sprint/list" class="btn"><spring:message code="label.cancel"/></a>
-                <button id="add-story-button" type="submit" class="btn btn-primary"><spring:message
-                        code="label.add.story.button"/></button>
+                <button id="update-story-button" type="submit" class="btn btn-primary"><spring:message
+                        code="label.update.story.button"/></button>
             </div>
         </form:form>
     </div>

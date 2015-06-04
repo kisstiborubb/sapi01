@@ -15,6 +15,8 @@ public class Story {
 
     public static final int MAX_LENGTH_DESCRIPTION = 500;
     public static final int MAX_LENGTH_TITLE = 100;
+    
+  //  Sprint sprint;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,6 +38,16 @@ public class Story {
 
     @Version
     private long version;
+    
+  //  @ManyToOne
+//	@JoinColumn(name = "story")
+//	public Sprint getSprint() {
+//		return this.sprint;
+//	}
+ 
+//	public void setSprint(Sprint sprint) {
+	//	this.sprint = sprint;
+//	}
 
     public Story() {
 

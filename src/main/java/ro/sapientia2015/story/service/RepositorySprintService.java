@@ -65,4 +65,10 @@ public class RepositorySprintService implements SprintService {
 
         return model;
     }
+    
+   // @Transactional(readOnly = true)
+   // @Override
+   // public List<Story> findAllStories() {
+    //   return repository.findAll().;
+   // }
 }
