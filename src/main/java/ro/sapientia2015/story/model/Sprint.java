@@ -40,9 +40,14 @@ public class Sprint {
     private long version;
 
     @Column(name = "story")
-    @OneToMany
+    @OneToMany 
     private List<Story> stories;
 
+    @Column(name = "work")
+    @OneToMany (fetch = FetchType.EAGER, mappedBy = "sprint")
+    // @JoinTable(name = "sprint_works")
+    private List<Work> works;
+    
     public Sprint() {
 
     }
@@ -63,6 +68,14 @@ public class Sprint {
 		this.stories = stories;
 	}
 
+	public List<Work> getWorks() {
+		return works;
+	}
+
+	public void setWorks(List<Work> works) {
+		this.works = works;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
