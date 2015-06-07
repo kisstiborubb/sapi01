@@ -21,6 +21,7 @@ import java.util.Locale;
 
 /**
  * @author Kiss Tibor
+  testing 1, 2
  */
 @Controller
 @SessionAttributes("story")
