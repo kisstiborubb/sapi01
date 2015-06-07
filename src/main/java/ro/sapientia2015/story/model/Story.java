@@ -36,7 +36,7 @@ public class Story {
 
     @Version
     private long version;
-
+    
     public Story() {
 
     }

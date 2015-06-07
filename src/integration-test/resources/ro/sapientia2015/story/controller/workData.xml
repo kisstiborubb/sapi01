@@ -1,9 +1,10 @@
 <dataset>
-    <story id="1" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Foo" version="0"/>
+	<story id="1" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Foo" version="0"/>
     <story id="2" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Bar" version="0"/>
     <sprint id="1" creation_time="2012-10-21 11:13:28" description="Lorem ipsum" modification_time="2012-10-21 11:13:28" title="Bar" version="0"/>
     <sprint_stories stories="1" sprint="1"/>
     
     <work id="1" name="name1" start="2015-10-10 11:00:00" end="2015-10-10 11:30:00" sprint="1" creation_time="2012-10-21 11:13:28" modification_time="2012-10-21 11:13:28" version="0"/>
+    <work id="2" name="name2" start="2015-11-10 11:00:00" end="2015-11-10 11:30:00" sprint="1" creation_time="2012-10-21 11:13:28" modification_time="2012-10-21 11:13:28" version="0"/>
 </dataset>
 
