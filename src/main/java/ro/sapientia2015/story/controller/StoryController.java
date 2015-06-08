@@ -10,7 +10,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ro.sapientia2015.story.dto.StoryDTO;
 import ro.sapientia2015.story.exception.NotFoundException;
+import ro.sapientia2015.story.model.Sprint;
 import ro.sapientia2015.story.model.Story;
+import ro.sapientia2015.story.service.SprintService;
 import ro.sapientia2015.story.service.StoryService;
 
 import javax.annotation.Resource;
@@ -48,6 +50,9 @@ public class StoryController {
 
     @Resource
     private StoryService service;
+    
+    @Resource
+	private SprintService sprintService;
 
     @Resource
     private MessageSource messageSource;
@@ -56,7 +61,7 @@ public class StoryController {
     public String showAddForm(Model model) {
         StoryDTO formObject = new StoryDTO();
         model.addAttribute(MODEL_ATTRIBUTE, formObject);
-
+  
         return VIEW_ADD;
     }
 

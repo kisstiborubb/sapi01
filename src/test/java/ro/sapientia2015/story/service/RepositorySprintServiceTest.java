@@ -40,7 +40,6 @@ public class RepositorySprintServiceTest {
         ReflectionTestUtils.setField(service, "repository", repositoryMock);
     }
 
-
     @Test
     public void findAll() {
         List<Sprint> models = new ArrayList<Sprint>();
@@ -61,8 +60,7 @@ public class RepositorySprintServiceTest {
     	dto.setTitle("Dude");
     	dto.setDescription("Da Dude");
         Sprint.Builder builder = mock(Sprint.Builder.class);
-    	
-    	
+    	    	
     	Sprint model = Sprint.getBuilder(dto.getTitle())
                 .description(dto.getDescription())
                 .build();
@@ -86,6 +84,42 @@ public class RepositorySprintServiceTest {
         assertEquals(model, actual);
     }
     
-    
-    
+    @Test
+    public void findAllStoriesOfSprint() throws NotFoundException {
+    	SprintDTO dto = new SprintDTO();
+    	dto.setTitle("Dude");
+    	dto.setDescription("Da Dude");
+    	Sprint.Builder builder = mock(Sprint.Builder.class);
+        
+    	Sprint model = Sprint.getBuilder(dto.getTitle())
+                .description(dto.getDescription())
+                .build();
+    	dto.setBuilder(builder);
+    	
+    	Story story = StoryTestUtil.createModel(StoryTestUtil.ID, StoryTestUtil.DESCRIPTION, StoryTestUtil.TITLE);
+    	
+    	List<Story> stories = new ArrayList<Story>();    
+    	stories.add(story);
+    	
+    	model.setCreationTime(DateTime.now());
+    	model.setId(1l);
+    	model.setModificationTime(DateTime.now());
+    	model.setVersion(0);    	
+    	model.setStories(stories);
+    	
+    	repositoryMock.save(model);
+    	
+    	Sprint sprint = new Sprint();
+    	sprint.setTitle(StoryTestUtil.TITLE);
+    	when(repositoryMock.findOne(StoryTestUtil.ID)).thenReturn(sprint);       
+    	
+    	Sprint findSprint = service.findById(StoryTestUtil.ID);    	
+    	
+    	List<Story> result = new ArrayList<Story>();
+    	List<Story> actual = findSprint.getStories();
+    		
+        when(sprint.getStories()).thenReturn(result);       
+
+        assertEquals(model, actual);
+    }   
  }

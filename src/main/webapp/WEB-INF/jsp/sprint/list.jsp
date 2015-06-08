@@ -17,9 +17,19 @@
                 <p><spring:message code="label.story.list.empty"/></p>
             </c:when>
             <c:otherwise>
-                <c:forEach items="${ sprints}" var="sprint">
+                <c:forEach items="${sprints}" var="sprint">
                     <div class="well well-small">
-                        <a href="/almafa/${sprint.id}"><c:out value="${sprint.title}"/></a>
+                        <div>
+                        	<a id="sprint-update-${sprint.id}" href="/sprint/update/${sprint.id}"><c:out value="${sprint.title}"/></a>
+                        </div>
+                        
+                        <c:choose>
+	                        <c:when test="${not empty stories}">
+		                        <div class="action-buttons">
+		                        	<a id="story-list-edit" href="/sprint/storyList/${sprint.id}">View Stories</a>
+		                        </div>
+	                         </c:when>
+                         </c:choose>
                     </div>
                 </c:forEach>
             </c:otherwise>

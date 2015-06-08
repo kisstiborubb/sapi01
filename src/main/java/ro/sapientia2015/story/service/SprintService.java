@@ -22,4 +22,8 @@ public interface SprintService {
     public Sprint findById(Long id) throws NotFoundException;
 
     public Sprint update(SprintDTO updated) throws NotFoundException;
+    
+    public Sprint updateStories(SprintDTO updated) throws NotFoundException;
+    
+    public List<Story> findAllStoriesOfSprint(Long id) throws NotFoundException;
 }
