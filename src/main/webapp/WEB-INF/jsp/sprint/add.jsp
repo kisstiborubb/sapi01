@@ -16,7 +16,7 @@
                 <label for="story-title"><spring:message code="label.story.title"/>:</label>
 
                 <div class="controls">
-                    <form:input id="story-title" path="title"/>
+                    <form:input id="sprint-title" path="title"/>
                     <form:errors id="error-title" path="title" cssClass="help-inline"/>
                 </div>
             </div>
@@ -26,21 +26,11 @@
                 <div class="controls">
                     <form:textarea id="story-description" path="description"/>
                     <form:errors id="error-description" path="description" cssClass="help-inline"/>
-                </div>
-            </div>
-           <div id="control-group-stories" class="control-group">
-                <label for="stories"><spring:message code="Stories"/>:</label>
-                                
-                <c:forEach var="story" items="${stories}">
-                	<div class="checkbox">
-                		<form:checkbox path="stories" value="${story.description}" label="${story.title}" />
-                		<form:errors path="stories" cssClass="error" />
-                	</div>                	               
-                </c:forEach>   
-            </div> 
+                </div>                  
+            </div>         
             <div class="action-buttons">
                 <a href="/sprint/list" class="btn"><spring:message code="label.cancel"/></a>
-                <button id="add-story-button" type="submit" class="btn btn-primary"><spring:message
+                <button id="add-sprint-button" type="submit" class="btn btn-primary"><spring:message
                         code="label.add.story.button"/></button>
             </div>
         </form:form>

@@ -27,7 +27,17 @@ public class SprintDTO {
 
     private List<Story> stories;
     
-    public SprintDTO() {
+    private List<Long> storyIds;
+    
+    public List<Long> getStoryIds() {
+		return storyIds;
+	}
+
+	public void setStoryIds(List<Long> storyIds) {
+		this.storyIds = storyIds;
+	}
+
+	public SprintDTO() {
 
     }
 

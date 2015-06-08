@@ -1,5 +1,6 @@
 package ro.sapientia2015.story.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -40,11 +41,11 @@ public class Sprint {
     private long version;
 
     @Column(name = "story")
-    @OneToMany
+    @OneToMany/*(mappedBy="sprint")*/
     private List<Story> stories;
 
     public Sprint() {
-
+    	stories = new ArrayList<Story>();
     }
 
     public static Builder getBuilder(String title) {
@@ -122,6 +123,10 @@ public class Sprint {
     public void update(String description, String title) {
         this.description = description;
         this.title = title;
+    }
+    
+    public void updateStories(List<Story> stories) {
+        this.stories = stories;
     }
 
     public static class Builder {

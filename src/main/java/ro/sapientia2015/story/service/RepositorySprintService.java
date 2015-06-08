@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.sapientia2015.story.dto.SprintDTO;
 import ro.sapientia2015.story.exception.NotFoundException;
 import ro.sapientia2015.story.model.Sprint;
+import ro.sapientia2015.story.model.Story;
 import ro.sapientia2015.story.repository.SprintRepository;
 
 /**
@@ -66,9 +67,20 @@ public class RepositorySprintService implements SprintService {
         return model;
     }
     
-   // @Transactional(readOnly = true)
-   // @Override
-   // public List<Story> findAllStories() {
-    //   return repository.findAll().;
-   // }
+    @Transactional(rollbackFor = {NotFoundException.class})
+    @Override
+    public Sprint updateStories(SprintDTO updated) throws NotFoundException {
+        Sprint model = findById(updated.getId());
+        model.updateStories(updated.getStories());
+
+        return model;
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Story> findAllStoriesOfSprint(Long id) throws NotFoundException {
+    	Sprint model = findById(id);
+    	
+        return model.getStories();
+    }
 }

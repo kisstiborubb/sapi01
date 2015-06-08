@@ -19,8 +19,8 @@ public class StoryDTO {
     @NotEmpty
     @Length(max = Story.MAX_LENGTH_TITLE)
     private String title;
-
-    public StoryDTO() {
+    
+	public StoryDTO() {
 
     }
 

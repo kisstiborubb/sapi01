@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.MutablePropertyValues;
-import org.springframework.context.MessageSource;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -13,31 +12,23 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import ro.sapientia2015.story.StoryTestUtil;
 import ro.sapientia2015.story.config.UnitTestContext;
-import ro.sapientia2015.story.controller.StoryController;
 import ro.sapientia2015.story.dto.SprintDTO;
-import ro.sapientia2015.story.dto.StoryDTO;
 import ro.sapientia2015.story.exception.NotFoundException;
 import ro.sapientia2015.story.model.Sprint;
 import ro.sapientia2015.story.model.Story;
 import ro.sapientia2015.story.service.SprintService;
-import ro.sapientia2015.story.service.StoryService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -114,7 +105,7 @@ public class SprintControllerTest {
     }
 
     @Test
-    public void add() {
+    public void add() throws NotFoundException {
         SprintDTO formObject = new SprintDTO();
 
         formObject.setTitle("title");
@@ -142,7 +133,7 @@ public class SprintControllerTest {
 
     
     @Test
-    public void addEmptyStory1() {
+    public void addEmptyStory1() throws NotFoundException {
     	
         SprintDTO formObject = new SprintDTO();
 
@@ -160,7 +151,7 @@ public class SprintControllerTest {
     }
     
     @Test
-    public void addTooLongStoryTitle() {
+    public void addTooLongStoryTitle() throws NotFoundException {
     	
         SprintDTO formObject = new SprintDTO();
 
@@ -177,7 +168,44 @@ public class SprintControllerTest {
         assertEquals(SprintController.VIEW_ADD, view);
     }
     
+    @Test
+    public void addStoriesToSprint() throws NotFoundException {
+    	
+        SprintDTO formObject = new SprintDTO();
+        List<Story> stories = new ArrayList<Story>();
+        Story story = StoryTestUtil.createModel(StoryTestUtil.ID, StoryTestUtil.DESCRIPTION, StoryTestUtil.TITLE);
+       
+        stories.add(story);
+        
+        formObject.setStories(stories);
+       
+        MockHttpServletRequest mockRequest = new MockHttpServletRequest("POST", "/sprint/storyList");
+        BindingResult result = bindAndValidate(mockRequest, formObject);
+
+        RedirectAttributesModelMap attributes = new RedirectAttributesModelMap();
+
+        String view = controller.add(formObject, result, attributes);
+        
+        String expectedView = "redirect:/sprint/list";
+        assertEquals(expectedView, view);
+    }
     
-    
-    
+    @Test
+    public void addEmptyStoriesToSprint() throws NotFoundException {
+    	
+        SprintDTO formObject = new SprintDTO();
+        List<Story> stories = new ArrayList<Story>();
+               
+        formObject.setStories(stories);
+       
+        MockHttpServletRequest mockRequest = new MockHttpServletRequest("POST", "/sprint/storyList");
+        BindingResult result = bindAndValidate(mockRequest, formObject);
+
+        RedirectAttributesModelMap attributes = new RedirectAttributesModelMap();
+
+        String view = controller.add(formObject, result, attributes);
+        
+        String expectedView = "redirect:/sprint/list";
+        assertEquals(expectedView, view);
+    }
 }

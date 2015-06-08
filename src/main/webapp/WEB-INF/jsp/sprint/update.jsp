@@ -28,17 +28,24 @@
                     <form:textarea id="story-description" path="description"/>
                     <form:errors id="error-description" path="description" cssClass="help-inline"/>
                 </div>   
-            </div>
-             <div id="control-group-stories" class="control-group">
-                <label for="stories"><spring:message code="Stories"/>:</label>
-                
-                 <c:forEach var="story" items="${stories}">
-                	<div class="checkbox">
-                		<form:checkbox path="stories" value="${story.description}" label="${story.title}" />
-                		<form:errors path="stories" cssClass="error" />
-                	</div>                	               
-                </c:forEach>
-            </div>
+            </div>   
+            
+            <c:choose>
+            	<c:when test="${not empty stories}">
+            		<div id="control-group-stories" class="control-group">   
+            			<label for="stories"><spring:message code="Stories"/>:</label>
+            
+			            <c:forEach var="story" items="${stories}">
+			             	<div>${story.title}</div>
+			             	<!--  <div class="checkbox">                	                		
+			             		<form:checkbox path="stories" value="${story.id}" label="${story.title}" />   	          		
+			             	</div>-->   
+			             	             
+			             </c:forEach>
+             		</div> 
+             	</c:when>
+            </c:choose>
+                    
             <div class="action-buttons">
                 <a href="/sprint/list" class="btn"><spring:message code="label.cancel"/></a>
                 <button id="update-story-button" type="submit" class="btn btn-primary"><spring:message

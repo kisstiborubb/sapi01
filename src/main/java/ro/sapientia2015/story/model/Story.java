@@ -16,8 +16,9 @@ public class Story {
     public static final int MAX_LENGTH_DESCRIPTION = 500;
     public static final int MAX_LENGTH_TITLE = 100;
     
-  //  Sprint sprint;
-
+  /*  @ManyToOne
+    private Sprint sprint;
+*/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,20 +36,7 @@ public class Story {
 
     @Column(name = "title", nullable = false, length = MAX_LENGTH_TITLE)
     private String title;
-
-    @Version
-    private long version;
-    
-  //  @ManyToOne
-//	@JoinColumn(name = "story")
-//	public Sprint getSprint() {
-//		return this.sprint;
-//	}
- 
-//	public void setSprint(Sprint sprint) {
-	//	this.sprint = sprint;
-//	}
-
+   
     public Story() {
 
     }
@@ -80,6 +68,17 @@ public class Story {
     public long getVersion() {
         return version;
     }
+    
+    @Version
+    private long version;
+    
+   /* public Sprint getSprint() {
+		return sprint;
+	}
+
+	public void setSprint(Sprint sprint) {
+		this.sprint = sprint;
+	}*/
 
     @PrePersist
     public void prePersist() {
@@ -120,5 +119,5 @@ public class Story {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
+    }	
 }
